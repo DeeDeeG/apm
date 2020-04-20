@@ -9,6 +9,10 @@ notifications:
 node_js:
   - "10.2.1"
 
+before_install: npm install -g npm
+
+install: npm install
+
 script: ./bin/npm test
 
 git:
