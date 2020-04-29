@@ -8,6 +8,15 @@ notifications:
 node_js:
   - "10.2.1"
 
+jobs:
+  include:
+  - name: python is 3.5
+    env: PYENV_VERSION=3.5
+  - name: python is 3.8
+    env: PYENV_VERSION=3.8
+  - name: python is 2.7
+    env: PYENV_VERSION=2.7
+
 before_install: 
   - npm install -g npm
   - echo "python is $(command -v python), version $(python --version)" 
