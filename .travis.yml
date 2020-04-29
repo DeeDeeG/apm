@@ -11,9 +11,9 @@ node_js:
 
 before_install: 
   - npm install -g npm
-  - echo "python is: $(command -v python), version: $(python --version)" 
-  - echo "python2 is: $(command -v python2), version: $(python2 --version)"
-  - echo "python3 is: $(command -v python3), version: $(python3 --version)"
+  - echo "python is $(command -v python), version $(python --version)" 
+  - echo "python2 is $(command -v python2), version $(python2 --version)"
+  - echo "python3 is $(command -v python3), version $(python3 --version)"
 
 install: npm install
 
