@@ -19,7 +19,7 @@ jobs:
 
 before_install: 
   - npm install -g npm
-  - if [ -n "$PYENV_VERSION" ]; then pyenv install "$PYENV_VERSION"; fi
+  - if [ -n "$PYENV_VERSION" ]; then pyenv install --list && pyenv install "$PYENV_VERSION"; fi
   - echo "python is $(command -v python), version $(python --version)" 
   - echo "python2 is $(command -v python2), version $(python2 --version)"
   - echo "python3 is $(command -v python3), version $(python3 --version)"
