@@ -10,16 +10,16 @@ node_js:
 
 jobs:
   include:
-  - name: python is 3.5
-    env: PYENV_VERSION=3.5
-  - name: python is 3.8
-    env: PYENV_VERSION=3.8
-  - name: python is 2.7
-    env: PYENV_VERSION=2.7
+  - name: python 3.5.4
+    env: PYENV_VERSION=3.5.4
+  - name: python 3.6.3
+    env: PYENV_VERSION=3.6.3
+  - name: python 2.7.14
+    env: PYENV_VERSION=2.7.14
 
 before_install: 
   - npm install -g npm
-  - if [ -n "$PYENV_VERSION" ]; then pyenv install --list && pyenv install "$PYENV_VERSION"; fi
+  - if [ -n "$PYENV_VERSION" ]; then pyenv install "$PYENV_VERSION"; fi
   - echo "python is $(command -v python), version $(python --version)" 
   - echo "python2 is $(command -v python2), version $(python2 --version)"
   - echo "python3 is $(command -v python3), version $(python3 --version)"
