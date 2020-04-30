@@ -41,7 +41,7 @@
     "rimraf": "^3.0.2",
     "season": "^6.0.2",
     "semver": "^7.3.2",
-    "tar": "^4.4.13",
+    "tar": "^6.0.2",
     "temp": "^0.9.1",
     "underscore-plus": "1.x",
     "wordwrap": "^1.0.0",
