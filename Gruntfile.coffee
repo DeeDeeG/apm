@@ -32,6 +32,7 @@ module.exports = (grunt) ->
   grunt.registerTask 'clean', ->
     grunt.file.delete('lib') if grunt.file.exists('lib')
     grunt.file.delete('bin/node_darwin_x64') if grunt.file.exists('bin/node_darwin_x64')
+    grunt.file.delete('node_modules/npm/node_modules/with a space') if grunt.file.exists('node_modules/npm/node_modules/with a space')
 
   grunt.registerTask('lint', ['coffeelint'])
   grunt.registerTask('default', ['coffee', 'lint'])
