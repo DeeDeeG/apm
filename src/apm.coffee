@@ -85,6 +85,8 @@ module.exports =
     # Use the explictly-configured version when set
     return process.env.GYP_MSVS_VERSION if process.env.GYP_MSVS_VERSION
 
+    return '2019' if @visualStudioIsInstalled("16.0")
+    return '2017' if @visualStudioIsInstalled("15.0")
     return '2015' if @visualStudioIsInstalled("14.0")
     return '2013' if @visualStudioIsInstalled("12.0")
     return '2012' if @visualStudioIsInstalled("11.0")
