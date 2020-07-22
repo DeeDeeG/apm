@@ -5,4 +5,18 @@ export PATH="$SCRIPT_DIR:$PATH"
 # Force npm to use its builtin node-gyp
 unset npm_config_node_gyp
 
-"$SCRIPT_DIR"/../node_modules/.bin/npm $@
+# Find bundled npm under this package's node_modules,
+# or in a node_modules one level above this package
+# (for when apm is a dependency)
+if [[ -f "${SCRIPT_DIR}/../node_modules/.bin/npm" ]]; then
+  BUNDLED_NPM_BIN_PATH="${SCRIPT_DIR}/../node_modules/.bin"
+elif [[ -f "${SCRIPT_DIR}/../../.bin/npm" ]]; then
+  BUNDLED_NPM_BIN_PATH="${SCRIPT_DIR}/../../.bin"
+fi
+
+if [[ -n "$BUNDLED_NPM_BIN_PATH" ]]; then
+  "$BUNDLED_NPM_BIN_PATH"/npm $@
+else
+  >&2 echo "error: apm couldn't find its bundled npm."
+  exit 1
+fi
