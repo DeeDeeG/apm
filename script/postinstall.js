@@ -7,7 +7,7 @@ var path = require('path')
 if (process.platform === 'win32') {
   npmWrapperExtension = '.cmd'
 } else {
-  npmWrapperExtension += ''
+  npmWrapperExtension = ''
 }
 
 const npmWrapperPath = path.join(__dirname, '..', 'bin', 'npm' + npmWrapperExtension)
