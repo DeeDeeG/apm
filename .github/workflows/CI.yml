@@ -22,7 +22,7 @@ jobs:
         node_arch:
           - x64
         include:
-          - node: 12
+          - node_version: 12
             os: windows-2016
             node_arch: x86
     steps:
