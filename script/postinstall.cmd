@@ -14,10 +14,7 @@ setx JOBS 16
 
 call .\bin\npm.cmd rebuild
 
-if defined NO_APM_DEDUPE (
-    echo.
-    echo ^>^> Deduplication disabled
-) else (
+if defined APM_DEDUPE (
     echo.
     echo ^>^> Deduping apm dependencies
     call .\bin\npm.cmd dedupe

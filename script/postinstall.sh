@@ -14,9 +14,7 @@ JOBS=16
 ./bin/npm rebuild
 
 echo
-if [ -z "${NO_APM_DEDUPE}" ]; then
+if [ -n "${APM_DEDUPE}" ]; then
   echo ">> Deduping apm dependencies"
   ./bin/npm dedupe
-else
-  echo ">> Deduplication disabled"
 fi
