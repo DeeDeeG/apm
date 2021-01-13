@@ -5,4 +5,22 @@ export PATH="$SCRIPT_DIR:$PATH"
 # Force npm to use its builtin node-gyp
 unset npm_config_node_gyp
 
-"$SCRIPT_DIR"/../node_modules/.bin/npm $@
+potentialNpmPaths=("$SCRIPT_DIR/../node_modules/.bin/npm" "$SCRIPT_DIR/../../../node_modules/.bin/npm")
+
+for potentialNpmPath in "${potentialNpmPaths[@]}"
+do
+  echo "Checking for npm at $potentialNpmPath..."
+  if [ -e "$potentialNpmPath" ]; then
+    echo "Found npm at $potentialNpmPath"
+    npmBinPath="$potentialNpmPath"
+    break
+  fi
+ echo "Didn't find npmBinPath at $potentialNpmPath"
+done
+
+if [ -e "$npmBinPath" ]; then
+  "$npmBinPath" $@
+else
+  echo "Could not find path to npm"
+  exit 1
+fi
