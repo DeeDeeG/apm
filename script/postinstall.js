@@ -4,6 +4,11 @@ var cp = require('child_process')
 var fs = require('fs')
 var path = require('path')
 
+if (process.env.APM_ALREADY_RUNNING_POSTINSTALL === 'true') {
+  console.log('\n>> Postinstall script is already being run. Skipping recursive call.\n')
+  process.exit(0)
+}
+
 var script = path.join(__dirname, 'postinstall')
 if (process.platform === 'win32') {
   script += '.cmd'
@@ -18,6 +23,7 @@ fs.chmodSync(script, 0o755)
 fs.chmodSync(path.join(__dirname, '..', 'bin', 'apm'), 0o755)
 fs.chmodSync(path.join(__dirname, '..', 'bin', 'npm'), 0o755)
 
+process.env.APM_ALREADY_RUNNING_POSTINSTALL = 'true'
 var child = cp.spawn(script, [], { stdio: ['pipe', 'pipe', 'pipe'], shell: true })
 child.stderr.pipe(process.stderr)
 child.stdout.pipe(process.stdout)
