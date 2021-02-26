@@ -5,8 +5,9 @@ setlocal EnableExtensions
 :: Skip the postinstall script if we're already rebuilding,
 :: to avoid an endless, recursive postinstall loop.
 if defined APM_ALREADY_REBUILDING (
+  echo.
   echo ^>^> Postinstall script is already being run. Skipping recursive call.
-  exit 0
+  exit /b 0
 )
 
 echo ^>^> Downloading bundled Node
