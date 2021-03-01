@@ -50,10 +50,9 @@ exports.addGitToEnv = (env) ->
   addGitBashToEnv(env)
 
 exports.getGitVersion = (callback) ->
-  npmOptions =
-    userconfig: config.getUserConfigPath()
-    globalconfig: config.getGlobalConfigPath()
-  npm.load npmOptions, ->
+  process.env.npm_config_userconfig = config.getUserConfigPath()
+  process.env.npm_config_globalconfig = config.getGlobalConfigPath()
+  npm.load ->
     git = npm.config.get('git') ? 'git'
     exports.addGitToEnv(process.env)
     spawned = spawn(git, ['--version'])

@@ -144,10 +144,9 @@ getAtomVersion = (callback) ->
       callback(unknownVersion)
 
 getPythonVersion = (callback) ->
-  npmOptions =
-    userconfig: config.getUserConfigPath()
-    globalconfig: config.getGlobalConfigPath()
-  npm.load npmOptions, ->
+  process.env.npm_config_userconfig = config.getUserConfigPath()
+  process.env.npm_config_globalconfig = config.getGlobalConfigPath()
+  npm.load ->
     python = npm.config.get('python') ? process.env.PYTHON
     if config.isWin32() and not python
       rootDir = process.env.SystemDrive ? 'C:\\'
