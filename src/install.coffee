@@ -90,7 +90,7 @@ class Install extends Command
         if installGlobally
           commands = []
           children = fs.readdirSync(nodeModulesDirectory)
-            .filter (dir) -> dir isnt ".bin"
+            .filter (path) -> path isnt ".bin" and path isnt ".package-lock.json"
           assert.equal(children.length, 1, "Expected there to only be one child in node_modules")
           child = children[0]
           source = path.join(nodeModulesDirectory, child)
