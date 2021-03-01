@@ -4,10 +4,9 @@ request = require 'request'
 config = require './apm'
 
 loadNpm = (callback) ->
-  npmOptions =
-    userconfig: config.getUserConfigPath()
-    globalconfig: config.getGlobalConfigPath()
-  npm.load(npmOptions, callback)
+  process.env.npm_config_userconfig = config.getUserConfigPath()
+  process.env.npm_config_globalconfig = config.getGlobalConfigPath()
+  npm.load(callback)
 
 configureRequest = (requestOptions, callback) ->
   loadNpm ->
