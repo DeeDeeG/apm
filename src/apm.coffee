@@ -109,10 +109,9 @@ module.exports =
       fs.existsSync(path.join(@x86ProgramFilesDirectory(), "Microsoft Visual Studio", "#{version}", "BuildTools", "Common7", "IDE")) or fs.existsSync(path.join(@x86ProgramFilesDirectory(), "Microsoft Visual Studio", "#{version}", "Community", "Common7", "IDE")) or fs.existsSync(path.join(@x86ProgramFilesDirectory(), "Microsoft Visual Studio", "#{version}", "Enterprise", "Common7", "IDE")) or fs.existsSync(path.join(@x86ProgramFilesDirectory(), "Microsoft Visual Studio", "#{version}", "Professional", "Common7", "IDE")) or fs.existsSync(path.join(@x86ProgramFilesDirectory(), "Microsoft Visual Studio", "#{version}", "WDExpress", "Common7", "IDE"))
 
   loadNpm: (callback) ->
-    npmOptions =
-      userconfig: @getUserConfigPath()
-      globalconfig: @getGlobalConfigPath()
-    npm.load npmOptions, -> callback(null, npm)
+    process.env.npm_config_userconfig = @getUserConfigPath()
+    process.env.npm_config_globalconfig = @getGlobalConfigPath()
+    npm.load -> callback(null, npm)
 
   getSetting: (key, callback) ->
     @loadNpm -> callback(npm.config.get(key))
